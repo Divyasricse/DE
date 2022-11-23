@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<math.h>
+int main(void)
+{
+ int x[100],i,n,s=0;
+ float y[100],sum_x=0,sum_y=0,sum_xy=0,sum_xx=0,sum_yy=0;
+ printf("enter number of elements");
+ scanf("%d",&n);
+ printf("enter elements of x");
+ for(i=0;i<n;i++)
+ {
+     scanf("%d",&x[i]);
+ }
+ printf("enter elements of y");
+ for(i=0;i<n;i++)
+ {
+     scanf("%f",&y[i]);
+ }
+ for(i=0;i<n;i++) {
+  sum_x=sum_x+x[i];
+  sum_y=sum_y+y[i];
+  sum_xx=sum_xx+(x[i]*x[i]);
+  sum_yy=sum_yy+(y[i]*y[i]);
+  sum_xy=sum_xy+(x[i]*y[i]);
+  
+ }
+ printf("%f\n",sum_xy);
+ float p=sum_xy/n;
+ float xbar=sum_x/n;
+ float ybar=sum_y/n;
+ float xy=xbar*ybar;
+ float cov=p-xy;
+ float varx=(sum_xx/n)-(xbar*xbar);
+ float vary=(sum_yy/n)-(ybar*ybar);
+ float sqrt_x=sqrt(varx);
+ float sqrt_y=sqrt(vary);
+ float corelation=cov/(sqrt_x*sqrt_y);
+ printf("%f",corelation);
+}
+
+
+output:
+enter number of elements18
+enter elements of x23 23 27 27 39 41 47 49 50 52 54 54 56 57 58 60 61
+0
+enter elements of y9.5 26.5 7.8 17.8 31.4 25.9 27.4 31.2 34.6 42.5 28.8 33.4 30.2 34.1
+32.9 41.2 35.7
+0
+24113.898438
+0.882409
