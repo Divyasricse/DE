@@ -1,0 +1,109 @@
+# DE
+#include<stdio.h>
+#include<stdlib.h>
+void meanf(int a[],int n)
+{
+    int mean,i,sum=0;
+    for(i=0;i<n;i++)
+    {
+        sum=sum+a[i];
+    }
+    mean=sum/n;
+    printf("the mean %d",mean);
+}
+void medianf(int a[],int n)
+{
+    int med;
+   if(n%2==0)
+   {
+       med=(a[n/2]+a[n/2+1])/2;
+   }
+   else
+   {
+       med=a[n/2];
+   }
+   printf("the median is %d\n",med);
+}
+void rangef(int a[],int n)
+{
+    float midrange;
+    midrange=(a[0]+a[n-1])/2;
+    printf("the midrange is %f",midrange);
+}
+void quartile(int a[],int n)
+{
+    int q1,q3;
+    q1=a[n+1/2];
+    q3=a[3*(n+1/2)];
+    printf("the q1 is %d",q1);
+    printf("the q3 is %d",q3);
+}
+void summary(int a[],int n)
+{
+   printf("the summary is ");
+   printf("the min ele is %d",a[0]);
+   quartile(a,n);
+   medianf(a,n);
+   printf("the max ele is %d",a[n-1]);
+   
+}
+void modef(int a[],int n){
+    
+    int c,mo,count[100],k=0;
+    for(int i=0;i<n;i++){
+        c=1;
+        for(int j=i+1;j<n;j++){
+            if(a[i]==a[j]){
+                c=c+1;
+            }
+        }
+        count[i]=c;
+    }
+    int max=count[0],max_index,m_c=0,mode[100],flag=0;
+   for(int i=0;i<n;i++){
+        if(count[i]>max){
+            max=count[i];
+            m_c=m_c+1;
+        }
+   }
+   for(int i=0;i<n;i=i+count[i]){
+       if( count[i]==max){
+           mode[k]=a[i];
+           k=k+1;
+       }
+   }
+       
+       
+       for(int i=0;i<k;i++){
+           printf("%d\n",mode[i]);
+       }
+switch(k){
+    case 0:printf("no mode");
+    break;
+    case 1:printf("uni modal");
+    break;
+    case 2:printf("bi modal");
+    break;
+    case 3:printf("tri modal");
+    break;
+    default:printf("multi modal");
+    break;
+}
+
+}   
+void  main()
+{
+    int a[100],i,n;
+   printf("enter number");
+    scanf("%d",&n); 
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+   meanf(a,n);
+   medianf(a,n);
+   rangef(a,n);
+   quartile(a,n);
+   summary(a,n);
+   modef(a,n);
+}
